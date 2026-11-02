@@ -76,4 +76,5 @@ console.log("\n--- SKENARIO PENGEMBALIAN ---");
 member1.returnBook(book2);
 member2.borrow(book2);
 
+// output: npx tsx name.ts
   

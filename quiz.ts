@@ -34,12 +34,28 @@ class Mario {
           console.log(`Mario terkena serangan! Sisa HP: ${this.hp}. Mario kembali ke Form awal: ${this.currentform}`);
         }
     }
+    
+    public supermashroom(): void {
+      if (this.currentform === 'Super Mario') {
+          console.log('Mario berubah menjadi Super Mario');
+        } else {
+          console.log('Efek habis, Mario kembali ke Form awal: Mario');
+        }
+    }
 
-    public shootFireball(): void {
+    public fireflower(): void {
         if (this.currentform === 'Fire Mario') {
           console.log('Mario menembakkan bola api');
         } else {
-          console.log('Tidak bisa menembakan bola api');
+          console.log('Efek habis, Mario kembali ke Form awal: Mario');
+        }
+    }
+
+    public superstar(): void {
+        if (this.invincible === false) {
+          console.log('Mario dalam Mode Invincibkle dan Kebal terhadap serangan');
+        } else {
+          console.log('Efek invincible habis');
         }
     }
 }
@@ -51,7 +67,6 @@ abstract class PowerUp {
   class SuperMushroom extends PowerUp {
     efekbuff(mario: Mario): void {
       mario.hp += 1;
-      mario.currentform = 'super mario';
       console.log('SuperMushroom (Jamur): Mario menjadi Super Mario, HP bertambah 1');
     }
   }
@@ -59,7 +74,6 @@ abstract class PowerUp {
   class FireFlower extends PowerUp {
     efekbuff(mario: Mario): void {
       mario.hp += 1;
-      mario.currentform = 'fire mario';
       console.log('FireFlower (Bunga): Mario menjadi Fire Mario, HP bertambah 1,dan dapat menembakkan bola api');
     }
   }
@@ -77,19 +91,19 @@ abstract class PowerUp {
   player1.gerakkanan(); 
   
   console.log("MENDAPATKAN ITEM");
+  
   const jamur = new SuperMushroom();
   jamur.efekbuff(player1);
+  player1.supermashroom();
   
   const bunga = new FireFlower(); 
   bunga.efekbuff(player1); 
-  player1.shootFireball(); 
+  player1.fireflower(); 
   
-  const bintang = new SuperStar(); 
+  const bintang = new SuperStar();
   bintang.efekbuff(player1); 
-  
+  player1.superstar();
+
   console.log("MUSUH MENYERANG");
-  player1.damage(); 
-  
-  console.log("EFEK BINTANG HABIS");
   player1.invincible = false;
   player1.damage();
